@@ -1,6 +1,17 @@
 version: '3.7'
 services:
 
+  node:
+    build:
+      context: .
+      dockerfile: gate-simulator/Dockerfile
+    container_name: node-container
+    working_dir: /home/node/app
+    volumes:
+      - ./gate-simulator:/home/node/app
+    ports:
+      - '9999:9999'
+
   mysql:
     image: mysql:latest
     container_name: mysql-container

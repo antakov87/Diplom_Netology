@@ -7,10 +7,9 @@ plugins {
 group 'ru.netology'
 version '1.0'
 
+sourceCompatibility = 11
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
-
-sourceCompatibility = 11
 
 allure {
     version = '2.20.0'
@@ -44,4 +43,5 @@ test {
     systemProperty 'db.user', System.getProperty('db.user', 'app')
     systemProperty 'db.password', System.getProperty('db.password', 'pass')
     systemProperty 'selenide.headless', System.getProperty('selenide.headless')
+
 }
