@@ -127,7 +127,7 @@ public class TourPurchaseTest {
 
     @Test
     @DisplayName("Должен вернуть ошибку со значением '2' поля Месяца в форме оплаты")
-    void shouldReturnErrorsWithMonthZeroInputsDebit() {
+    void shouldReturnErrorsWithSingleDigitInMonthFieldDebit() {
         successDebitPage().enterIncorrectMonthInput(userWithSingleDigitInMonthField(), "Неверный формат");
     }
 
@@ -151,7 +151,7 @@ public class TourPurchaseTest {
 
     @Test
     @DisplayName("Должен вернуть ошибку со значением '2' поля Месяца в форме оплаты кредитной картой")
-    void shouldReturnErrorsWithMonthZeroInputsCreditCard() {
+    void shouldReturnErrorsWithSingleDigitInMonthFieldCreditCard() {
         successCreditPage().enterIncorrectMonthInput(userWithSingleDigitInMonthField(), "Неверный формат");
     }
 
