@@ -14,21 +14,18 @@ public class DBHelper {
 
     @SneakyThrows
     private static Connection connection() {
-        String url = System.getProperty("db");
-        String user = "app";
-        String password = "pass";
-        return DriverManager.getConnection(url, user, password);
+        return DriverManager.getConnection(System.getProperty("db"), "app", "pass");
     }
 
     @SneakyThrows
     public static String getStatusDebitCard() {
-        return queryRunner.query(conn, "SELECT status FROM payment_entity ORDER BY created DESC",
+        return queryRunner.query(conn, "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1",
                 new ScalarHandler<>());
     }
 
     @SneakyThrows
     public static String getStatusCreditCard() {
-        return queryRunner.query(conn, "SELECT status FROM credit_request_entity ORDER BY created DESC",
+        return queryRunner.query(conn, "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1",
                 new ScalarHandler<>());
     }
 

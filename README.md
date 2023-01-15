@@ -18,6 +18,10 @@
 ### Инструкция по установке:
 1. Запустить проект в IntelliJ IDEA.
 2. Выполнить команду в терминале `docker-compose up`
-3. Запустить SUT командой в терминале: `java -jar aqa-shop.jar`
-4. Запустить тесты командой: `./gradlew clean test`
+3. Запустить SUT командой в терминале: 
+* `java "-Dspring.datasource.url=jdbc:mysql://localhost:3306/db" -jar aqa-shop.jar`
+* `java "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/db" -jar aqa-shop.jar`
+4. Запустить тесты командой: 
+* `./gradlew clean test "-Ddb.url=jdbc:mysql://localhost:3306/db"`
+* `./gradlew clean test "-Ddb.url=jdbc:postgresql://localhost:5432//db"`
 5. Запустить отчет с открытием в браузере командой: `./gradlew allureServe`

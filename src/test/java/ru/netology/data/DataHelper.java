@@ -21,12 +21,14 @@ public class DataHelper {
         String cvc;
     }
 
+
+
     //валидный пользователь
     public static CardInfo validUser(String cardType) {
         return new CardInfo(
                 cardType, // approvedCard, declinedCard, unknownCard
-                generateDate("yy"), // Год (следующего после текущего месяца)
-                generateDate("MM"), // Следующий месяц после текущего
+                getGenerateDateYear(), // Год
+                getGenerateDateMonth(), // месяц
                 getHolder(),
                 getCvc()
         );
@@ -47,8 +49,8 @@ public class DataHelper {
     public static CardInfo userWithCardUnderLimit() {
         return new CardInfo(
                 "4444 4444 4444 444",
-                generateDate("yy"),
-                generateDate("MM"),
+                getGenerateDateYear(),
+                getGenerateDateMonth(),
                 getHolder(),
                 getCvc()
         );
@@ -58,8 +60,8 @@ public class DataHelper {
     public static CardInfo userWithEmptyFieldCard() {
         return new CardInfo(
                 "",
-                generateDate("yy"),
-                generateDate("MM"),
+                getGenerateDateYear(),
+                getGenerateDateMonth(),
                 getHolder(),
                 getCvc()
         );
@@ -69,7 +71,7 @@ public class DataHelper {
     public static CardInfo userWithAnEmptyMonthField() {
         return new CardInfo(
                 getApprovedCard(),
-                generateDate("yy"),
+                getGenerateDateYear(),
                 "",
                 getHolder(),
                 getCvc()
@@ -80,7 +82,7 @@ public class DataHelper {
     public static CardInfo userWithSingleDigitInMonthField() {
         return new CardInfo(
                 getApprovedCard(),
-                generateDate("yy"),
+                getGenerateDateYear(),
                 "2",
                 getHolder(),
                 getCvc()
@@ -91,7 +93,7 @@ public class DataHelper {
     public static CardInfo userWithNumberInMonthFieldMoreTwelve() {
         return new CardInfo(
                 getApprovedCard(),
-                generateDate("yy"),
+                getGenerateDateYear(),
                 "14",
                 getHolder(),
                 getCvc()
@@ -102,7 +104,7 @@ public class DataHelper {
     public static CardInfo userWithMonthZero() {
         return new CardInfo(
                 getApprovedCard(),
-                generateDate("yy"),
+                getGenerateDateYear(),
                 "00",
                 getHolder(),
                 getCvc()
@@ -114,7 +116,7 @@ public class DataHelper {
         return new CardInfo(
                 getApprovedCard(),
                 "",
-                generateDate("MM"),
+                getGenerateDateMonth(),
                 getHolder(),
                 getCvc()
         );
@@ -125,7 +127,7 @@ public class DataHelper {
         return new CardInfo(
                 getApprovedCard(),
                 "2",
-                generateDate("MM"),
+                getGenerateDateMonth(),
                 getHolder(),
                 getCvc()
         );
@@ -136,7 +138,7 @@ public class DataHelper {
         return new CardInfo(
                 getApprovedCard(),
                 "21",
-                generateDate("MM"),
+                getGenerateDateMonth(),
                 getHolder(),
                 getCvc()
         );
@@ -147,7 +149,7 @@ public class DataHelper {
         return new CardInfo(
                 getApprovedCard(),
                 "00",
-                generateDate("MM"),
+                getGenerateDateMonth(),
                 getHolder(),
                 getCvc()
         );
@@ -157,8 +159,8 @@ public class DataHelper {
     public static CardInfo userWithAnEmptyOwnerField() {
         return new CardInfo(
                 getApprovedCard(),
-                generateDate("yy"),
-                generateDate("MM"),
+                getGenerateDateYear(),
+                getGenerateDateMonth(),
                 "",
                 getCvc()
         );
@@ -168,8 +170,8 @@ public class DataHelper {
     public static CardInfo userWithOneWordInOwnerField() {
         return new CardInfo(
                 getApprovedCard(),
-                generateDate("yy"),
-                generateDate("MM"),
+                getGenerateDateYear(),
+                getGenerateDateMonth(),
                 "Antakov",
                 getCvc()
         );
@@ -179,8 +181,8 @@ public class DataHelper {
     public static CardInfo userWithThreeWordsInOwnerField() {
         return new CardInfo(
                 getApprovedCard(),
-                generateDate("yy"),
-                generateDate("MM"),
+                getGenerateDateYear(),
+                getGenerateDateMonth(),
                 "Antakov Sergey Andreevich",
                 getCvc()
         );
@@ -190,8 +192,8 @@ public class DataHelper {
     public static CardInfo userWithNameInRussianInOwnerField() {
         return new CardInfo(
                 getApprovedCard(),
-                generateDate("yy"),
-                generateDate("MM"),
+                getGenerateDateYear(),
+                getGenerateDateMonth(),
                 "Антаков",
                 getCvc()
         );
@@ -201,8 +203,8 @@ public class DataHelper {
     public static CardInfo userWithNumbersInOwnerField() {
         return new CardInfo(
                 getApprovedCard(),
-                generateDate("yy"),
-                generateDate("MM"),
+                getGenerateDateYear(),
+                getGenerateDateMonth(),
                 "456321",
                 getCvc()
         );
@@ -212,8 +214,8 @@ public class DataHelper {
     public static CardInfo userWithCharactersInOwnerField() {
         return new CardInfo(
                 getApprovedCard(),
-                generateDate("yy"),
-                generateDate("MM"),
+                getGenerateDateYear(),
+                getGenerateDateMonth(),
                 "#$%@",
                 getCvc()
         );
@@ -223,8 +225,8 @@ public class DataHelper {
     public static CardInfo userWithAnEmptyInFieldCvc() {
         return new CardInfo(
                 getApprovedCard(),
-                generateDate("yy"),
-                generateDate("MM"),
+                getGenerateDateYear(),
+                getGenerateDateMonth(),
                 getHolder(),
                 ""
         );
@@ -234,8 +236,8 @@ public class DataHelper {
     public static CardInfo userWithSingleDigitInFieldCvc() {
         return new CardInfo(
                 getApprovedCard(),
-                generateDate("yy"),
-                generateDate("MM"),
+                getGenerateDateYear(),
+                getGenerateDateMonth(),
                 getHolder(),
                 "1"
         );
@@ -245,15 +247,19 @@ public class DataHelper {
     public static CardInfo userWithTwoDigitsInFieldCvc() {
         return new CardInfo(
                 getApprovedCard(),
-                generateDate("yy"),
-                generateDate("MM"),
+                getGenerateDateYear(),
+                getGenerateDateMonth(),
                 getHolder(),
                 "12"
         );
     }
 
-    private static String generateDate(String formatPattern) {
-        return LocalDate.now().plusMonths(1).format(DateTimeFormatter.ofPattern(formatPattern));
+    private static String getGenerateDateYear() {
+        return LocalDate.now().plusYears(2).format(DateTimeFormatter.ofPattern("yy"));
+    }
+
+    private static String getGenerateDateMonth() {
+        return LocalDate.now().plusMonths(5).format(DateTimeFormatter.ofPattern("MM"));
     }
 
     public static String getApprovedCard() {
