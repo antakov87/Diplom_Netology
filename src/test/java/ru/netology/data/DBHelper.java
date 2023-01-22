@@ -12,9 +12,14 @@ public class DBHelper {
     private final static QueryRunner queryRunner = new QueryRunner();
     private final static Connection conn = connection();
 
+
+
     @SneakyThrows
     private static Connection connection() {
-        return DriverManager.getConnection(System.getProperty("db"), "app", "pass");
+        String url = System.getProperty("db");
+        String user = System.getProperty("user");
+        String password = System.getProperty("password");
+        return DriverManager.getConnection(url, user, password);
     }
 
     @SneakyThrows

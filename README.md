@@ -22,6 +22,6 @@
 * `java "-Dspring.datasource.url=jdbc:mysql://localhost:3306/db" -jar aqa-shop.jar`
 * `java "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/db" -jar aqa-shop.jar`
 4. Запустить тесты командой: 
-* `./gradlew clean test "-Ddb.url=jdbc:mysql://localhost:3306/db"`
-* `./gradlew clean test "-Ddb.url=jdbc:postgresql://localhost:5432//db"`
+* `./gradlew clean test -Ddb="jdbc:mysql://localhost:3306/db"`
+* `./gradlew clean test -Ddb="jdbc:postgresql://localhost:5432//db"`
 5. Запустить отчет с открытием в браузере командой: `./gradlew allureServe`

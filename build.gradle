@@ -38,6 +38,8 @@ test {
     useJUnitPlatform()
     systemProperty 'db', System.getProperty('db', "jdbc:mysql://localhost:3306/db")
 //    systemProperty 'db', System.getProperty('db', "jdbc:postgresql://localhost:5432/db")
+    systemProperty 'user', System.getProperty('user', "app")
+    systemProperty 'password', System.getProperty('password', "pass")
     systemProperty 'selenide.headless', System.getProperty('selenide.headless')
 
 }
